@@ -2,15 +2,27 @@ def forward_feature_selector(model, x_train, y_train, n_features = None, cv = 5,
     
     '''
     Feedforward Feature Selection 
-    model - base estimator
-    x_train - training data
-    y_train - training labels
-    n_features - max features to extract (default = None)
-    cv = str (default = 5),
-    metric = str (default = roc_auc)
-    verbose = bool True/False
+        Input:
+            model: 
+                The base estimator to build models on.
+            x_train: 
+                Training data without target
+            y_train:
+                Training Target labels
+            n_features: Default = None
+                Max features to extract
+            cv: Default = 5
+                Number of cross validations to do for CV-Score Calculation
+            metric: str, Default = 'roc_auc'
+                Metric to be evaluated on. Available metrics supported with sklearn cross_val_score
+            verbose: bool, Default = True
+                Whether to keep verbosity or not
+          
+        Returns: 
+            list of most useful features
     
     Prerequisites:
+    
     >>> import numpy as np
     >>> import multiprocessing
     >>> from joblib import Parallel, delayed
