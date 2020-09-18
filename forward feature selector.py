@@ -25,6 +25,7 @@ def forward_feature_selector(model, x_train, y_train, n_features = None, cv = 5,
     
     >>> import numpy as np
     >>> import multiprocessing
+    >>> import pickle
     >>> from joblib import Parallel, delayed
     >>> from sklearn.model_selection import cross_val_score
     '''
@@ -92,6 +93,12 @@ def forward_feature_selector(model, x_train, y_train, n_features = None, cv = 5,
                     print("No further improvement in CV score")
                     print("Stopping further Selection")
                 selecting = False
+                
+        #saving the features at every 10th iteration        
+        if i%10 == 0:
+            with open('useful_feats.pkl', 'wb') as f:
+                pickle.dump(useful_columns,f)
+            
         i += 1
                 
     return useful_columns
