@@ -1,6 +1,4 @@
-Python 3.6.3rc1 (v3.6.3rc1:d8c174a, Sep 19 2017, 16:39:51) [MSC v.1900 64 bit (AMD64)] on win32
-Type "copyright", "credits" or "license()" for more information.
->>> def forward_feature_selector(model, x_train, y_train, n_features = None, cv = 5, metric = 'roc_auc', verbose = True):
+def forward_feature_selector(model, x_train, y_train, n_features = None, cv = 5, metric = 'roc_auc', verbose = True):
     
     '''
     Feedforward Feature Selection 
@@ -57,11 +55,8 @@ Type "copyright", "credits" or "license()" for more information.
             #list of all the columns to model on
             columns_to_model_on = useful_columns
             columns_to_model_on.append(column_index)
-
             
-            cv_score_column = cross_val_score(model, x_train[:,columns_to_model_on], y_train, cv = cv, scoring = metric)
-#             cv_scores_bank[column_index] = cv_score_column.mean()
-            
+            cv_score_column = cross_val_score(model, x_train[:,columns_to_model_on], y_train, cv = cv, scoring = metric)            
             return (column_index, cv_score_column.mean())
         
         #parallely building the model for feature selection
